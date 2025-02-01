@@ -19,5 +19,26 @@ public class Seat {
         this.pClass = pClass;
     }
 
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setPassenger(int passenger) {
+        this.passenger = passenger;
+        this.available = false;
+    }
+
+    public char getRow() {
+        return row;
+    }
+
+    public int getSeat() {
+        return seat;
+    }
+
+    public String getpClass() {
+        return pClass;
+    }
+
 
 }

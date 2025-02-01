@@ -1,21 +1,21 @@
 package plane;
 
 public class Plane {
+    Seat[][] plane;
+    private int cost = 0;
+    private boolean priority = false;
+    
     public Plane() {
-        // plane has 20 rows and 4 seats per row
-        Seat[][] plane = new Seat[20][4];
-        // create seats for each row
+        plane = new Seat[20][4];
         boolean window = false;
         String pClass = "";
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 4; j++) {
-                // create window seats
                 if (j == 0 || j == 3) {
                     window = true;
                 } else {
                     window = false;
                 }
-                // create class
                 if (i < 5) {
                     pClass = "First";
                 } else if (i < 15) {
@@ -28,4 +28,93 @@ public class Plane {
         }
 
     }
+
+    public void populateSeats() {
+        // populate seats with passengers
+        for (int i = 0; i < 63; i++) {
+            generatePassenger();
+        }
+        
+    }
+
+    public void generatePassenger() {
+        // generate random number between 0 and 19
+        int row = (int) (Math.random() * 20);
+        int seat = (int) (Math.random() * 4);
+        if (plane[row][seat].isAvailable()) {
+            int passenger = (int) (Math.random() * 1000);
+            plane[row][seat].setPassenger(passenger);
+        } else {
+            generatePassenger();
+        }
+    }
+
+    public void displaySeats() {
+        // display available seats on plane
+        System.out.println("Available Seats:");
+        System.out.println("FIRST CLASS:");
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (plane[i][j].isAvailable()) {
+                    System.out.println("      Seat " + plane[i][j].getRow() + plane[i][j].getSeat() + " - " + plane[i][j].getpClass());
+                }
+            }
+        }
+        System.out.println("BUSINESS CLASS:");
+        for (int i = 5; i < 15; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (plane[i][j].isAvailable()) {
+                    System.out.println("      Seat " + plane[i][j].getRow() + plane[i][j].getSeat() + " - " + plane[i][j].getpClass());
+                }
+            }
+        }
+        System.out.println("ECONOMY CLASS:");
+        for (int i = 15; i < 20; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (plane[i][j].isAvailable()) {
+                    System.out.println("      Seat " + plane[i][j].getRow() + plane[i][j].getSeat() + " - " + plane[i][j].getpClass());
+                }
+            }
+        }
+    }
+
+    public boolean valid(char row, int seat) {
+        // check if seat is available
+        int r = (int) row - 65;
+        if (plane[r][seat - 1].isAvailable()) {
+            System.out.println("You have selected seat " + row + seat);
+            return true;
+        } else {
+            System.out.println("Seat " + row + seat + " is not available. Please select another seat.");
+            return false;
+        }
+    }   
+
+    public void buyPriority() {
+        // buy priority boarding
+        cost += 50;
+        priority = true;
+        System.out.println("Priority boarding purchased for $50.");
+    }
+
+    public String getPriority() {
+        // return priority boarding status
+        if (priority) {
+            return "with priority boarding";
+        } else {
+            return "without priority boarding";
+        }
+    }
+
+    public String getpClass(int row, int seat) {
+        return plane[row][seat].getpClass();
+    }
+
+    public int setPassenger(char row, int seat) {
+        int r = (int) row - 65;
+        int id = (int) (Math.random() * 1000);
+        plane[r][seat - 1].setPassenger(id);
+        return id;
+    }
+
 }
