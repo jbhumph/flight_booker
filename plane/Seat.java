@@ -40,5 +40,13 @@ public class Seat {
         return pClass;
     }
 
+    public int priority() {
+        if (priority) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
 
 }

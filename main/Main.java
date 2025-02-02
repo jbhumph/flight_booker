@@ -53,6 +53,10 @@ public class Main {
         } else {
             System.out.println("Please select another seat.");
         }
+
+        plane.boardingOrder();
+
+        plane.displayBoardingOrder();
     }
 
 

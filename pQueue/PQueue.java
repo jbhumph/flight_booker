@@ -62,7 +62,7 @@ public class PQueue<T> {
 
     public void dequeue() {
         if (front == null) {
-            return;
+            return ;
         }
         front = front.next;
         size--;

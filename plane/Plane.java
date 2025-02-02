@@ -1,9 +1,12 @@
 package plane;
 
+import pQueue.PQueue;
+
 public class Plane {
     Seat[][] plane;
     private int cost = 0;
     private boolean priority = false;
+    PQueue<Seat> pQueue;
     
     public Plane() {
         plane = new Seat[20][4];
@@ -115,6 +118,33 @@ public class Plane {
         int id = (int) (Math.random() * 1000);
         plane[r][seat - 1].setPassenger(id);
         return id;
+    }
+
+    public Seat getSeat(int row, int seat) {
+        return plane[row][seat];
+    }
+
+    public void boardingOrder() {
+        pQueue = new PQueue<>();
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (!plane[i][j].isAvailable()) {
+                    if (plane[i][j].priority() > 0) {
+                        pQueue.enqueuePriority(plane[i][j]);
+                    } else {
+                        pQueue.enqueue(plane[i][j]);
+                    }
+                }
+            }
+        }
+    }
+
+    public void displayBoardingOrder() {
+        System.out.println("Boarding order:");
+        while (pQueue.getSize() > 0) {
+            System.out.println("SEAT: " + pQueue.peek().getRow() + pQueue.peek().getSeat() + " - " + pQueue.peek().getpClass());
+            pQueue.dequeue();
+        }
     }
 
 }
