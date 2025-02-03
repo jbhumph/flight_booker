@@ -28,6 +28,10 @@ public class Seat {
         this.available = false;
     }
 
+    public void setPriority() {
+        priority = true;
+    }
+
     public char getRow() {
         return row;
     }

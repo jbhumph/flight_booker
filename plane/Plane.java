@@ -93,10 +93,11 @@ public class Plane {
         }
     }   
 
-    public void buyPriority() {
+    public void buyPriority(int row, int seat) {
         // buy priority boarding
         cost += 50;
         priority = true;
+        plane[row][seat].setPriority();
         System.out.println("Priority boarding purchased for $50.");
     }
 
@@ -129,7 +130,7 @@ public class Plane {
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 4; j++) {
                 if (!plane[i][j].isAvailable()) {
-                    if (plane[i][j].priority() > 0) {
+                    if (plane[i][j].priority() == 1) {
                         pQueue.enqueuePriority(plane[i][j]);
                     } else {
                         pQueue.enqueue(plane[i][j]);
@@ -142,7 +143,7 @@ public class Plane {
     public void displayBoardingOrder() {
         System.out.println("Boarding order:");
         while (pQueue.getSize() > 0) {
-            System.out.println("SEAT: " + pQueue.peek().getRow() + pQueue.peek().getSeat() + " - " + pQueue.peek().getpClass());
+            System.out.println("SEAT: " + pQueue.peek().getRow() + pQueue.peek().getSeat() + " - " + pQueue.peek().getpClass() + " - " + pQueue.peek().priority());
             pQueue.dequeue();
         }
     }

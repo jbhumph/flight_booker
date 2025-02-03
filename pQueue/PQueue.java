@@ -38,6 +38,7 @@ public class PQueue<T> {
 
     public void enqueuePriority(T data) {
         node<T> newNode = new node<>(data);
+        newNode.priority = 1;
         if (front == null) {
             front = newNode;
             rear = newNode;

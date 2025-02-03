@@ -42,10 +42,10 @@ public class Main {
         System.out.println("Would you like to purchase priority boarding for $50? (Y/N)");
         char priority = scanner.next().charAt(0);
         if (priority == 'Y' || priority == 'y') {
-            plane.buyPriority();
+            plane.buyPriority(row - 65, seat - 1);
         }
 
-        System.out.println("Seat " + row + seat + " in " + plane.getpClass(row - 65, seat - 1) + " class to NEW YORK with " + plane.getPriority() + "? (Y/N)");
+        System.out.println("Seat " + row + seat + " in " + plane.getpClass(row - 65, seat - 1) + " class to NEW YORK " + plane.getPriority() + "? (Y/N)");
         char confirm = scanner.next().charAt(0);
         if (confirm == 'Y' || confirm == 'y') {
             int id = plane.setPassenger(row, seat);
