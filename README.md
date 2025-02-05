@@ -4,6 +4,10 @@ John Humphrey
 w/ Adam Sabet and Jing Lin Lai
 
 ## Contents:
+- [Introduction](#introduction)
+- [How To Run](#how-to-run)
+- [About](#about)
+- [Thoughts and Improvements](#thoughts-and-future-improvements)
 
 ## Introduction:
 This program simulates buying a ticket for a particular flight and subsequently creating a boarding queue with priority. Created for CS 240 class at Whatcom Community College. There are two versions - one written in Java and the other written in C.
@@ -28,6 +32,7 @@ We had initially brainstormed some project ideas and thought that this might be 
 
 It was interesting transferring some of these ideas over into C. A major difference being Java is Object Oriented while C is generally considered procedural. C also requires the use of pointers which made this particularly interesting. Note the difference in **enqueue** functions between Java and C:
 
+*Java*
 ```java
 public void enqueue(T data) {
         node<T> newNode = new node<>(data);
@@ -42,6 +47,7 @@ public void enqueue(T data) {
         size++;
 ```
 
+*C*
 ```c
 void enqueue(queue* q, seat* seat) {
     node* temp = newNode(seat);
