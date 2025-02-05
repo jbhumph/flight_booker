@@ -15,7 +15,7 @@ typedef struct Seat {
 
 // define type node for Queue
 typedef struct Node {
-    seat* data;
+    struct Seat* data;
     struct Node *next;
     int priority;
 } node;
@@ -190,7 +190,7 @@ void freeQueue(queue* q) {
 // main function
 int main(void) {
     // welcome and get flight
-    printf("Welcome to the airport\n");
+    printf("\nWelcome to the airport\n\n");
     int flight = 0;
     printf("Please select a flight to board:\n");
     printf("1 - Flight to New York\n");
